@@ -1,3 +1,4 @@
+
 <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs -->
 
 <!DOCTYPE html>
@@ -130,65 +131,63 @@
   <button class="tablinks" onclick="openCity(event, 'hw12')">12 亥</button>
 </div>
 
-<div id="hw00" class="tabcontent">
-    <iframe src="./hw00.html" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw00" class="tabcontent"></div>
 
-<div id="hw01" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw01-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw01" class="tabcontent"></div>
 
-<div id="hw02" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw02-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw02" class="tabcontent"></div>
 
-<div id="hw03" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw03-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw03" class="tabcontent"></div>
 
-<div id="hw04" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw04-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw04" class="tabcontent"></div>
 
-<div id="hw05" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw05-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw05" class="tabcontent"></div>
 
-<div id="hw06" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw06-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw06" class="tabcontent"></div>
 
-<div id="hw07" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw07-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw07" class="tabcontent"></div>
 
-<div id="hw08" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw08-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw08" class="tabcontent"></div>
 
-<div id="hw09" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw09-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw09" class="tabcontent"></div>
 
-<div id="hw10" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw10-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw10" class="tabcontent"></div>
 
-<div id="hw11" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw11-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw11" class="tabcontent"></div>
 
-<div id="hw12" class="tabcontent">
-    <iframe src="https://ntut-cg-lab.github.io/cg2021f-hw12-henry81003003/" seamless="seamless" scrolling="yes" frameborder="0" allowtransparency="true"> </iframe>
-</div>
+<div id="hw12" class="tabcontent"></div>
 
 
 <script>
+
+var accountID = "henry81003003";
+
 window.onload = function() {
-    openCity(event, 'hw00');
+    openCity({ currentTarget: document.getElementsByClassName('tablinks')[0] }, 'hw00');
 };
 
 function openCity(evt, cityName) {
+  var city = document.getElementById(cityName);
+
+  if(typeof city.load == 'undefined'){
+    city.load = 1;
+
+    var iframe = document.createElement('iframe');
+    iframe.setAttribute('seamless', 'seamless');
+    iframe.setAttribute('scrolling', 'no');
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allowtransparency', 'true');
+    
+    if(cityName == 'hw00'){
+      iframe.src = "./hw00.html";
+    }
+    else {
+      iframe.src = "https://ntut-cg-lab.github.io/cg2021f-" + cityName + "-" + accountID;
+    }
+
+    city.appendChild(iframe);
+  }
+
 
   var i, tabcontent, tablinks;
 
@@ -204,7 +203,7 @@ function openCity(evt, cityName) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
 
-  document.getElementById(cityName).style.display = "block";
+  city.style.display = "block";
 
   evt.currentTarget.className += " active";
 }
